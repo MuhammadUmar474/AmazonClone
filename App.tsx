@@ -21,12 +21,12 @@ const App = () => {
   };
 
   return (
-    <SafeAreaView style={backgroundStyle}>
+    <View style={backgroundStyle}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
       {/* <HomeScreen /> */}
       {/* <ShoppingCartScreen /> */}
       <Router />
-    </SafeAreaView>
+    </View>
   );
 };
 
