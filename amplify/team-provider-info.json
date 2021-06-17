@@ -1,0 +1,38 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-amazon099-dev-151926-authRole",
+      "UnauthRoleArn": "arn:aws:iam::443871044871:role/amplify-amazon099-dev-151926-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::443871044871:role/amplify-amazon099-dev-151926-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-amazon099-dev-151926-deployment",
+      "UnauthRoleName": "amplify-amazon099-dev-151926-unauthRole",
+      "StackName": "amplify-amazon099-dev-151926",
+      "StackId": "arn:aws:cloudformation:us-east-1:443871044871:stack/amplify-amazon099-dev-151926/2db00800-cdc3-11eb-83e6-123f2d95f4cf",
+      "AmplifyAppId": "dugwkegz7e32m"
+    },
+    "categories": {
+      "auth": {
+        "amazon099bcdcb7da": {}
+      }
+    }
+  },
+  "new": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-amazon099-new-151929-authRole",
+      "UnauthRoleArn": "arn:aws:iam::443871044871:role/amplify-amazon099-new-151929-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::443871044871:role/amplify-amazon099-new-151929-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-amazon099-new-151929-deployment",
+      "UnauthRoleName": "amplify-amazon099-new-151929-unauthRole",
+      "StackName": "amplify-amazon099-new-151929",
+      "StackId": "arn:aws:cloudformation:us-east-1:443871044871:stack/amplify-amazon099-new-151929/58aa2120-ce8c-11eb-b04a-12909bffa46d",
+      "AmplifyAppId": "d240sq2aykfier"
+    },
+    "categories": {
+      "auth": {
+        "amazon099d08ca62f": {}
+      }
+    }
+  }
+}

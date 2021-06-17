@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
 import { View, Text, TextInput, Alert, ScrollView, KeyboardAvoidingView, Platform } from 'react-native'
 import { Picker } from '@react-native-picker/picker';
+import { useNavigation } from '@react-navigation/native';
 import countryList from 'country-list';
+import { DataStore, Auth } from 'aws-amplify';
+import {Order, OrderProduct, CartProduct} from '../../models';
 import styles from './styles';
 import Button from '../../components/Button';
 
@@ -17,7 +20,49 @@ const AddressScreen = () => {
     const [addressError, setAddressError] = useState('Invalid Address');
     const [city, setCity] = useState('');
 
-    console.log(fullname);
+    const navigation = useNavigation();
+
+
+    const saveOrder = async () => {
+        // get User Details
+        const userData = await Auth.currentAuthenticatedUser();
+        // Create a new Order
+        const newOrder = await DataStore.save(
+            new Order({
+                userSub: userData.attributes.sub,
+
+                fullName: fullname,
+                phoneNumber: phone,
+                country,
+                city,
+                address,
+            }),
+        );
+
+        // fetch all cart items
+        const cartItems = await DataStore.query(CartProduct, cp => 
+            cp.userSub('eq', userData.attributes.sub),
+        );
+
+        // Attach all cart items to the order
+        await Promise.all(
+            cartItems.map(cartItem => DataStore.save(new OrderProduct({
+                quantity: cartItem.quantity,
+                option: cartItem.option,
+                productID: cartItem.productID,
+                orderID: newOrder.id,
+            }),
+            ),
+            ),
+        );
+
+        // delete all cart items
+        await Promise.all(
+            cartItems.map(cartItem => DataStore.delete(cartItem)));
+
+        // redirect home
+            navigation.navigate('Home');
+    }
 
 
     const onCheckout = () => {
@@ -35,7 +80,7 @@ const AddressScreen = () => {
             return;
         }
 
-        console.warn('Checkout')
+        saveOrder();
     }
 
     const validateAddress = () => {
